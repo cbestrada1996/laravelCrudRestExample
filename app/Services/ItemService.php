@@ -46,10 +46,12 @@ class ItemService implements ItemServiceInterface
 
     public function update(int $id, ItemRequest $request): JsonResponse
     {
-        $path = $request->file("image")->store($this::ITEM_IMAGE_STORE, 'public');
         $params = $request->all();
-        $params['image'] = $path;
-
+        if($request->hasFile("image")){
+            $path = $request->file("image")->store($this::ITEM_IMAGE_STORE, 'public');
+            $params['image'] = $path;
+        }
+      
         $item = $this->itemRepository->update($id,$params);
 
         return response()->json(new ResourceItem($item), 200);

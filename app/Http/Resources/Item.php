@@ -16,10 +16,11 @@ class Item extends JsonResource
     {
         return [
             'id'            => $this->id,
+            'key'           => $this->id,
             'name'          => $this->name,
             'description'   => $this->description,
             'price'         => $this->price,
-            'image'         => $this->image
+            'image'         => substr($this->image, 0, 4) === "http" ? $this->image : "storage/".$this->image
         ];;
     }
 }

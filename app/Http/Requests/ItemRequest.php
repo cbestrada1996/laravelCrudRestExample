@@ -97,11 +97,7 @@ class ItemRequest extends FormRequest
     {
         $errors = (new ValidationException($validator))->errors();
         throw new HttpResponseException(
-            response()->json(['error' =>
-                [
-                    'code' => JsonResponse::HTTP_UNPROCESSABLE_ENTITY,
-                    'message' => $errors
-                ]
+            response()->json(['error' => $errors
             ], JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
         );
     }

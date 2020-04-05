@@ -20,5 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('item/all', 'Api\v1\ItemController@all');
 Route::get('item/{id}', 'Api\v1\ItemController@find')->where('id', '[0-9]+');
 Route::post('item/create', 'Api\v1\ItemController@create'); 
-Route::patch('item/{id}', 'Api\v1\ItemController@update')->where('id', '[0-9]+');
+Route::put('item/{id}', 'Api\v1\ItemController@update')->where('id', '[0-9]+');
 Route::delete('item/{id}', 'Api\v1\ItemController@delete')->where('id', '[0-9]+');

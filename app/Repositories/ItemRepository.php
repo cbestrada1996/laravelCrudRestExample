@@ -13,7 +13,7 @@ class ItemRepository implements ItemRepositoryInterface
 {
     public function all(): Collection 
     {
-        return Item::all();
+        return Item::orderBy('id', 'ASC')->get();
     }
 
     public function find(int $id): Item
@@ -44,7 +44,7 @@ class ItemRepository implements ItemRepositoryInterface
     {
         $item = $this->find($id);
 
-        if($params['image']){
+        if(array_key_exists('image', $params)){
             Storage::disk('public')->delete($item->image);
         }
 
